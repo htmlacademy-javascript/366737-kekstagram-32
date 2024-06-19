@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Мария Бадулина](https://up.htmlacademy.ru/javascript/32/user/366737).
-* Наставник: `Неизвестно`.
+* Наставник: [Никита Сигов](https://htmlacademy.ru/profile/crazer).
 
 ---
 
