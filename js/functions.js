@@ -1,5 +1,5 @@
 function stringLength(string, length){
-  return (string.length <= length);
+  return string.length <= length;
 }
 
 // Строка короче 20 символов
@@ -19,7 +19,7 @@ function stringPalindrome(string) {
     newString += transformString.at(i);
   }
 
-  return (transformString === newString) ? 'Это палиндром' : 'Это не палиндром';
+  return transformString === newString;
 }
 
 // Строка является палиндромом
