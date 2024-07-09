@@ -59,9 +59,7 @@ const workEndMeeting = (startWork, endWork, startMeeting, durationMeeting) => {
   const lengthWork = hourInMinutesWork + minutesWork; //Длина рабочего дня
 
   const hoursMinutesMeeting = startMeeting.split(':');
-  const hoursInMinutesMeeting = 0;
-  const minutesMeeting = parseInt(hoursMinutesMeeting[1], 10);
-  const timeMeeting = hoursInMinutesMeeting + minutesMeeting + durationMeeting; // продолжительность встречи
+  // продолжительность встречи
 
   const workEndMeetingLength = timeInMinutes(endWork) - timeInMinutes(startMeeting); // выходит ли встреча за рабочее время
 
@@ -69,9 +67,9 @@ const workEndMeeting = (startWork, endWork, startMeeting, durationMeeting) => {
     return false;
   } else if (workEndMeetingLength < durationMeeting) {
     return false;
-  }else if (lengthWork >= timeMeeting) {
+  }else if (lengthWork >= durationMeeting) {
     return true;
-  } else if(lengthWork < timeMeeting) {
+  } else if(lengthWork < durationMeeting) {
     return false;
   }
 
