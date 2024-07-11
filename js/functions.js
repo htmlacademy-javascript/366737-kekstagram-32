@@ -51,27 +51,14 @@ const timeInMinutes = (time) => {
 };
 
 const workEndMeeting = (startWork, endWork, startMeeting, durationMeeting) => {
-  const startHoursMinutes = startWork.split(':');
-  const endHoursMinutes = endWork.split(':');
-  const removeZero = (number) => parseInt(number.toString().replace(/0+/g, ''), 10);
-  const hourInMinutesWork = (removeZero((endHoursMinutes[0] - startHoursMinutes[0])) * 60);
-  const minutesWork = parseInt(endHoursMinutes[1], 10) - parseInt(startHoursMinutes[1],10);
-  const lengthWork = hourInMinutesWork + minutesWork; //Длина рабочего дня
+  const startDayMinutes = timeInMinutes(startWork);
+  const endDayMinutes = timeInMinutes(endWork);
+  const startMeetingMinutes = timeInMinutes(startMeeting);
 
-  const hoursMinutesMeeting = startMeeting.split(':');
-  // продолжительность встречи
+  const endMeetingMinutes = startMeetingMinutes + durationMeeting;
 
-  const workEndMeetingLength = timeInMinutes(endWork) - timeInMinutes(startMeeting); // выходит ли встреча за рабочее время
+  return (startMeetingMinutes >= startDayMinutes) && (endDayMinutes >= endMeetingMinutes);
 
-  if(startHoursMinutes[0] > hoursMinutesMeeting[0]){
-    return false;
-  } else if (workEndMeetingLength < durationMeeting) {
-    return false;
-  }else if (lengthWork >= durationMeeting) {
-    return true;
-  } else if(lengthWork < durationMeeting) {
-    return false;
-  }
 
 };
 
