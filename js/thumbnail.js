@@ -5,11 +5,12 @@ const pictureList = document.querySelector('.pictures');
 const thumbnailTemplate = document.querySelector('#picture').content;
 const thumbnail = thumbnailTemplate.querySelector('.picture');
 
-const createThumbnail = createPhotoPost();
+const createThumbnails = createPhotoPost();
+
 
 const thumbnailFragment = document.createDocumentFragment();
 
-createThumbnail.forEach(({url, description, likes, comments}) => {
+createThumbnails.forEach(({url, description, likes, comments}) => {
   const thumbnailItem = thumbnail.cloneNode(true);
 
   const picture = thumbnailItem.querySelector('.picture__img');
@@ -21,6 +22,6 @@ createThumbnail.forEach(({url, description, likes, comments}) => {
   thumbnailFragment.append(thumbnailItem);
 });
 
-const thumbnailPhoto = pictureList.append(thumbnailFragment);
+pictureList.appendChild(thumbnailFragment);
 
-export {thumbnailPhoto};
+
