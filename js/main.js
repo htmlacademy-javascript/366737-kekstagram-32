@@ -1,5 +1,4 @@
-import {photoPost} from './data.js';
-console.log (
-  photoPost()
-);
+import {createPhotoPost} from './data.js';
+import './thumbnail.js';
 
+console.log(createPhotoPost());

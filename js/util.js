@@ -35,4 +35,6 @@ const createIdGenerator = () => {
   };
 };
 
-export {getRandomInteger, uniqueRandomInteger, createIdGenerator};
+const getRandomElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
+
+export {getRandomInteger, uniqueRandomInteger, createIdGenerator, getRandomElement};
