@@ -1,4 +1,6 @@
-import {getRandomInteger, uniqueRandomInteger, createIdGenerator} from './util.js';
+import {getRandomInteger, uniqueRandomInteger, createIdGenerator, getRandomElement} from './util.js';
+
+const CREATE_PHOTO_COUNT = 25;
 
 const NAMES = [
   'Сергей',
@@ -50,15 +52,11 @@ const DESCRIPTIONS = [
   'Бегемот зовет туристов с ним поиграть',
 ];
 
-const CREATE_PHOTO_COUNT = 25;
-
 const generatePostId = createIdGenerator();
 const generateCommentId = createIdGenerator();
 //const uniquePhotoId = createIdGenerator(1, 25); Фотографии в порядке возрастания
 const uniquePhotoId = uniqueRandomInteger(1, 25);
 
-
-const getRandomElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 function createComment() {
   return{
@@ -80,9 +78,9 @@ function createPhoto() {
 
 }
 
-const photoPost = () => Array.from({length: CREATE_PHOTO_COUNT}, createPhoto);
+const createPhotoPost = () => Array.from({length: CREATE_PHOTO_COUNT}, createPhoto);
 
 
-export {photoPost};
+export {createPhotoPost};
 
 
