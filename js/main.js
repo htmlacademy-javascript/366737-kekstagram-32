@@ -1,4 +1,4 @@
-import {createPhotoPost} from './data.js';
-import './thumbnail.js';
 
-console.log(createPhotoPost());
+import './user-modal.js';
+
+

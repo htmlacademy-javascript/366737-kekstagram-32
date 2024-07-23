@@ -1,16 +1,14 @@
-import {createPhotoPost} from './data.js';
+import {createPhotoPosts} from './data.js';
 
 const pictureList = document.querySelector('.pictures');
 
 const thumbnailTemplate = document.querySelector('#picture').content;
 const thumbnail = thumbnailTemplate.querySelector('.picture');
 
-const createThumbnails = createPhotoPost();
-
 
 const thumbnailFragment = document.createDocumentFragment();
 
-createThumbnails.forEach(({url, description, likes, comments}) => {
+createPhotoPosts.forEach(({url, description, likes, comments, id}) => {
   const thumbnailItem = thumbnail.cloneNode(true);
 
   const picture = thumbnailItem.querySelector('.picture__img');
@@ -18,10 +16,15 @@ createThumbnails.forEach(({url, description, likes, comments}) => {
   picture.alt = description;
   thumbnailItem.querySelector('.picture__comments').textContent = comments.length;
   thumbnailItem.querySelector('.picture__likes').textContent = likes;
+  thumbnailItem.setAttribute('data-id', id);
 
-  thumbnailFragment.append(thumbnailItem);
+  thumbnailFragment.appendChild(thumbnailItem);
 });
 
 pictureList.appendChild(thumbnailFragment);
+
+console.log(createPhotoPosts);
+
+export {createPhotoPosts};
 
 
