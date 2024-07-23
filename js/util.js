@@ -37,4 +37,10 @@ const createIdGenerator = () => {
 
 const getRandomElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-export {getRandomInteger, uniqueRandomInteger, createIdGenerator, getRandomElement};
+//Обработчик событий по нажатию клавиши Esc
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+//Обработчик событий на клавишу Enter
+const isEnterKey = (evt) => evt.key === 'Enter';
+
+export {getRandomInteger, uniqueRandomInteger, createIdGenerator, getRandomElement, isEscapeKey, isEnterKey};

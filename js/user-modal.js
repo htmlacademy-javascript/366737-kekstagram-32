@@ -1,12 +1,16 @@
 import {isEscapeKey, isEnterKey} from './util.js';
-import {renderThumbnail} from './thumbnail.js';
+import {createPhotoPosts} from './thumbnail.js';
+
 
 const picturesContainer = document.querySelector('.pictures');
-const userModalElement = document.querySelector('.picture');
-const userModalElementOpen = document.querySelector('.big-picture');
-const userModalElementClose = userModalElementOpen.querySelector('.big-picture__cancel');
-const bigPicture = userModalElementOpen.querySelector('.big-picture__img');
+const userModalOpen = document.querySelector('.big-picture');
+const userModalClose = userModalOpen.querySelector('.big-picture__cancel');
 
+const listComment = userModalOpen.querySelector('.social__comments');
+
+const commentTemplate = document.querySelector('#comment').content;
+const comment = commentTemplate.querySelector('.social__comment');
+const commentFragment = document.createDocumentFragment();
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -15,92 +19,61 @@ const onDocumentKeydown = (evt) => {
   }
 };
 
-function openUserModal () {
-  userModalElementOpen.classList.remove('hidden');
-  document.body.classList.add('modal-open');
-  document.addEventListener('keydown', onDocumentKeydown);
-}
 
-function closeUserModal () {
-  userModalElementOpen.classList.add('hidden');
-  document.body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onDocumentKeydown);
-}
+const renderComments = (comments) =>{
+  comments.forEach(({avatar, name}) => {
+    const commentItem = comment.cloneNode(true);
 
-const onListClick = function(evt){
-  picturesContainer.addEventListener('click', (evt) => {
-    if (event.target.closest('.picture')) {
-      openUserModal();
-    }
+    const commentData = commentItem.querySelector('.social__picture');
+    commentData.src = avatar;
+    commentData.alt = name;
+
+
+    commentFragment.appendChild(commentItem);
   });
-
-  picturesContainer.addEventListener('change', onListClick);
+  listComment.appendChild(commentFragment);
 };
 
 
-onListClick();
+const dataTransferInModal = (post) => {
+  userModalOpen.querySelector('.big-picture__image').src = post.url;
+  userModalOpen.querySelector('.social__caption').textContent = post.description;
+  userModalOpen.querySelector('.likes-count').textContent = post.likes;
+  userModalOpen.querySelector('.social__comment-total-count').textContent = post.likes.length;
+  renderComments(post.comment);
 
-userModalElementClose.addEventListener('click', () => {
-  closeUserModal();
-});
+  openUserModal();
+};
 
-userModalElementClose.addEventListener('keydown', (evt) => {
-  if (isEnterKey(evt)) {
-    closeUserModal();
+
+picturesContainer.addEventListener('click', (evt) => {
+
+  if (evt.target.closest('.picture')) {
+
+    const idPicture = parseInt(evt.target.closest('.picture').getAttribute('data-id'), 10);
+    const resultId = createPhotoPosts.find((post) => post.id === idPicture);
+
+    if (resultId) {
+      evt.preventDefault();
+      dataTransferInModal(resultId);
+    }
+
   }
 });
-
-
-/*
-*/
-
-/*
 
 
 function openUserModal () {
-  bigPicture.classList.remove('hidden');
-  body.classList.add('modal-open');
-
+  userModalOpen.classList.remove('hidden');
+  document.body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
+  userModalClose.addEventListener('click', closeUserModal);
 }
 
 function closeUserModal () {
-  bigPicture.classList.add('hidden');
-  body.classList.remove('modal-open');
+  userModalOpen.classList.add('hidden');
+  document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
+  userModalClose.removeListener('click', closeUserModal);
 }
 
-userModalElement.addEventListener('click', () => {
-  openUserModal();
-});
 
-userModalElement.addEventListener('keydown', (evt) => {
-  if (isEnterKey(evt)) {
-    openUserModal();
-  }
-});
-
-userModalElementClose.addEventListener('click', () => {
-  closeUserModal();
-});
-
-userModalElementClose.addEventListener('keydown', (evt) => {
-  if (isEnterKey(evt)) {
-    closeUserModal();
-  }
-});
-*/
-
-
-/*for(const userModalElement of userModalElements){
-  userModalElement.addEventListener('click', () => {
-    userModalElementOpen.classList.remove('hidden');
-  });
-}
-
-userModalElement.forEach(
-  console.log
-
-
-);
-*/

@@ -78,9 +78,9 @@ function createPhoto() {
 
 }
 
-const createPhotoPost = () => Array.from({length: CREATE_PHOTO_COUNT}, createPhoto);
+const createPhotoPosts = Array.from({length: CREATE_PHOTO_COUNT}, createPhoto);
 
 
-export {createPhotoPost};
+export {createPhotoPosts};
 
 
