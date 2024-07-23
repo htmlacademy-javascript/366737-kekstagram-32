@@ -21,13 +21,13 @@ const onDocumentKeydown = (evt) => {
 
 
 const renderComments = (comments) =>{
-  comments.forEach(({avatar, name}) => {
+  comments.forEach(({avatar, name, message}) => {
     const commentItem = comment.cloneNode(true);
 
     const commentData = commentItem.querySelector('.social__picture');
     commentData.src = avatar;
     commentData.alt = name;
-
+    commentItem.querySelector('.social__text').textContent = message;
 
     commentFragment.appendChild(commentItem);
   });
@@ -40,7 +40,7 @@ const dataTransferInModal = (post) => {
   userModalOpen.querySelector('.social__caption').textContent = post.description;
   userModalOpen.querySelector('.likes-count').textContent = post.likes;
   userModalOpen.querySelector('.social__comment-total-count').textContent = post.likes.length;
-  renderComments(post.comment);
+  renderComments(post.comments);
 
   openUserModal();
 };
