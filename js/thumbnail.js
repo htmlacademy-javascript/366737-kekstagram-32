@@ -23,7 +23,6 @@ createPhotoPosts.forEach(({url, description, likes, comments, id}) => {
 
 pictureList.appendChild(thumbnailFragment);
 
-console.log(createPhotoPosts);
 
 export {createPhotoPosts};
 
