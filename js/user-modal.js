@@ -1,4 +1,4 @@
-import {isEscapeKey, isEnterKey} from './util.js';
+import {isEscapeKey} from './util.js';
 import {createPhotoPosts} from './thumbnail.js';
 
 const COMMENT_SHOWN_COUNT = 5;
