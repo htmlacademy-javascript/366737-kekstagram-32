@@ -107,7 +107,6 @@ function openUserModal () {
 function closeUserModal () {
   userModalOpen.classList.add('hidden');
   document.body.classList.remove('modal-open');
-  listComment.textContent = '';
   document.removeEventListener('keydown', onDocumentKeydown);
   userModalClose.removeEventListener('click', closeUserModal);
 }
