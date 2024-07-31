@@ -1,4 +1,4 @@
-import {isEscapeKey, isEnterKey} from './util.js';
+import {isEscapeKey} from './util.js';
 import {createPhotoPosts} from './thumbnail.js';
 
 const COMMENT_SHOWN_COUNT = 5;
@@ -107,7 +107,6 @@ function openUserModal () {
 function closeUserModal () {
   userModalOpen.classList.add('hidden');
   document.body.classList.remove('modal-open');
-  listComment.textContent = '';
   document.removeEventListener('keydown', onDocumentKeydown);
   userModalClose.removeEventListener('click', closeUserModal);
 }
