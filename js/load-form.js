@@ -9,6 +9,7 @@ const imageLoadPreview = document.querySelector('.img-upload__preview img');
 const effectsImage = document.querySelectorAll('.effects__preview');
 const textHashtags = document.querySelector('.text__hashtags');
 const textDescription = document.querySelector('.text__description');
+const formInput = document.querySelector('.img-upload__form');
 
 //константа для сбрасывания изображения при закрытии окна
 const scaleInput = document.querySelector('.scale__control--value');
@@ -16,7 +17,12 @@ const scaleInput = document.querySelector('.scale__control--value');
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    closeUserModal();
+    // Предотвращает закрытие формы, если фокус на поле ввода
+    if(document.activeElement === textHashtags || document.activeElement === textDescription) {
+      evt.stopPropagation();
+    } else{
+      closeUserModal();
+    }
   }
 };
 
@@ -47,11 +53,8 @@ function closeUserModal () {
   document.removeEventListener('keydown', onDocumentKeydown);
   closeInput.removeEventListener('click', closeUserModal);
 
-  //formInput.reset();
-  uploadInput.value = '';
-  imageLoadPreview.src = '';
-  textHashtags.value = '';
-  textDescription.value = '';
+  // сбрасываем данные формы
+  formInput.reset();
 
   // сбрасываем значения в pristine
   pristine.reset();
