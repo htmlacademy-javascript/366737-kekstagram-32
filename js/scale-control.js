@@ -15,7 +15,6 @@ scaleIncrease.addEventListener('click', () => {
   updateScale();
 });
 
-
 function updateScale() {
   scaleInput.value = `${currentScale}%`;
   imageLoadPreview.style.transform = `scale(${currentScale / 100})`;
