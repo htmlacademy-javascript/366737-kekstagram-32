@@ -1,5 +1,3 @@
-import {isEscapeKey} from './util.js';
-
 const COUNT_HASHTAG = 5;
 
 const uploadForm = document.querySelector('.img-upload__form');
