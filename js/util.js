@@ -1,9 +1,10 @@
+const ALERT_SHOW_TIME = 5000;
+
 // Функция для получения рандомного числа из переданного диапазона.
 const getRandomInteger = (min, max) => {
   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
   const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
   const result = Math.random() * (upper - lower + 1) + lower;
-
   return Math.floor(result);
 };
 
@@ -37,10 +38,23 @@ const createIdGenerator = () => {
 
 const getRandomElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
+const dataErrorTemplate = document.querySelector('#data-error').content.querySelector('.data-error');
+
+//функция показа ошибки спустя какое-то время
+const showAlert = () => {
+  const dataErrorElement = dataErrorTemplate.cloneNode(true);
+  document.body.append(dataErrorElement);
+
+  setTimeout(() => {
+    dataErrorElement.remove();
+  }, ALERT_SHOW_TIME);
+};
+
 //Обработчик событий по нажатию клавиши Esc
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 //Обработчик событий на клавишу Enter
 const isEnterKey = (evt) => evt.key === 'Enter';
 
-export {getRandomInteger, uniqueRandomInteger, createIdGenerator, getRandomElement, isEscapeKey, isEnterKey};
+
+export {getRandomInteger, uniqueRandomInteger, createIdGenerator, getRandomElement, isEscapeKey, isEnterKey, showAlert};
