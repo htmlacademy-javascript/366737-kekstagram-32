@@ -10,13 +10,6 @@ const pristine = new Pristine(uploadForm, {
   errorTextParent: 'img-upload__field-wrapper'
 });
 
-uploadForm.addEventListener('submit', (evt) => {
-  const isValid = pristine.validate();
-  if (!isValid) {
-    evt.preventDefault();
-  }
-});
-
 const hashtagArray = (tagString) => tagString.trim().split(' ').filter(() => Boolean.length);
 
 const validateHashtag = (value) => hashtagArray(value).every((tag) => hashtag.test(tag));

@@ -1,5 +1,5 @@
 import {isEscapeKey} from './util.js';
-import {createPhotoPosts} from './thumbnail.js';
+import {renderPictures} from './thumbnail.js';
 
 const COMMENT_SHOWN_COUNT = 5;
 
@@ -7,20 +7,12 @@ const COMMENT_SHOWN_COUNT = 5;
 const picturesContainer = document.querySelector('.pictures');
 const userModalOpen = document.querySelector('.big-picture');
 const userModalClose = userModalOpen.querySelector('.big-picture__cancel');
-
-
 const listComment = userModalOpen.querySelector('.social__comments');
-//const socialComment = userModalOpen.querySelector('.social__comment');
-//const socialCommentCount = userModalOpen.querySelector('.social__comment-count');
 const socialCommentShownCount = userModalOpen.querySelector('.social__comment-shown-count');
-//const socialCommentTotalCount = userModalOpen.querySelector('.social__comment-total-count');
-
 const loaderComment = userModalOpen.querySelector('.comments-loader');
-
 const commentTemplate = document.querySelector('#comment').content;
 const commentSocial = commentTemplate.querySelector('.social__comment');
 const commentFragment = document.createDocumentFragment();
-
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -46,7 +38,6 @@ const renderComments = (comments) =>{
   });
   listComment.appendChild(commentFragment);
 };
-
 
 const dataTransferInModal = (post) => {
   userModalOpen.querySelector('.big-picture__image').src = post.url;
@@ -88,7 +79,7 @@ picturesContainer.addEventListener('click', (evt) => {
   if (evt.target.closest('.picture')) {
 
     const idPicture = parseInt(evt.target.closest('.picture').getAttribute('data-id'), 10);
-    const resultId = createPhotoPosts.find((post) => post.id === idPicture);
+    const resultId = renderPictures.find((post) => post.id === idPicture);
 
     if (resultId) {
       evt.preventDefault();
