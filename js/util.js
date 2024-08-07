@@ -1,3 +1,4 @@
+
 const ALERT_SHOW_TIME = 5000;
 
 // Функция для получения рандомного числа из переданного диапазона.
@@ -50,6 +51,14 @@ const showAlert = () => {
   }, ALERT_SHOW_TIME);
 };
 
+const debounce = (callback, timeoutDelay = 500) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
 //Обработчик событий по нажатию клавиши Esc
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
@@ -57,4 +66,4 @@ const isEscapeKey = (evt) => evt.key === 'Escape';
 const isEnterKey = (evt) => evt.key === 'Enter';
 
 
-export {getRandomInteger, uniqueRandomInteger, createIdGenerator, getRandomElement, isEscapeKey, isEnterKey, showAlert};
+export {getRandomInteger, uniqueRandomInteger, createIdGenerator, getRandomElement, isEscapeKey, isEnterKey, showAlert, debounce};

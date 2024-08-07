@@ -1,8 +1,12 @@
+
+
 import {setOnFormSubmit, closeUserModal} from './load-form.js';
-import {showAlert} from './util.js';
+import {showAlert, debounce} from './util.js';
 import {showSuccessMessage, showErrorMessage} from './message.js';
 import {getData, sendData} from './api.js';
 import {renderPictures} from './thumbnail.js';
+import {initFilter, getFilteredPictures} from './filter.js';
+
 
 // асинхронное отправление данных
 setOnFormSubmit(async (data) => {
@@ -18,7 +22,11 @@ setOnFormSubmit(async (data) => {
 //функция для загрузки данных с сервера
 try {
   const data = await getData();
-  renderPictures(data);
+  const debounceRenderPictures = debounce(renderPictures);
+  initFilter(data,debounceRenderPictures);
+  renderPictures(getFilteredPictures());
 } catch {
   showAlert ();
 }
+
+
