@@ -4,16 +4,18 @@ import {init, reset} from './effect-image.js';
 
 init();
 
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 const SubmitButtonText = {
   IDLE: 'Опубликовать',
   SUBMITTING: 'Отправляю...'
 };
+
 const form = document.querySelector('.img-upload__form');
 const uploadInput = form.querySelector('.img-upload__input');
 const overlayInput = form.querySelector('.img-upload__overlay');
 const closeInput = form.querySelector('.img-upload__cancel');
 const imageLoadPreview = document.querySelector('.img-upload__preview img');
-const effectsImage = document.querySelectorAll('.effects__preview');
+const effectsImage = document.querySelectorAll('.effects__item .effects__preview');
 const textHashtags = form.querySelector('.text__hashtags');
 const textDescription = form.querySelector('.text__description');
 const submitButton = form.querySelector('.img-upload__submit');
@@ -33,18 +35,22 @@ const onDocumentKeydown = (evt) => {
   }
 };
 
-
 uploadInput.addEventListener('change', (evt) => {
   evt.preventDefault();
 
   const file = uploadInput.files[0];
-  const imageUrl = URL.createObjectURL(file);
+  const fileName = file.name.toLowerCase();
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
 
-  imageLoadPreview.src = imageUrl;
+  if (matches) {
+    const imageUrl = URL.createObjectURL(file);
 
-  effectsImage.forEach((itemEffect) => {
-    itemEffect.style.backgroundImage = `url(${imageUrl})`;
-  });
+    imageLoadPreview.src = imageUrl;
+
+    effectsImage.forEach((itemEffect) => {
+      itemEffect.style.backgroundImage = `url(${imageUrl})`;
+    });
+  }
   openUserModal();
 });
 
