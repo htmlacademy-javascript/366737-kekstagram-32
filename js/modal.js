@@ -1,5 +1,5 @@
 import {isEscapeKey} from './util.js';
-import {renderPictures} from './thumbnail.js';
+//import {renderPictures} from './thumbnail.js';
 
 const COMMENT_SHOWN_COUNT = 5;
 
@@ -13,6 +13,7 @@ const loaderComment = userModalOpen.querySelector('.comments-loader');
 const commentTemplate = document.querySelector('#comment').content;
 const commentSocial = commentTemplate.querySelector('.social__comment');
 const commentFragment = document.createDocumentFragment();
+
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -73,21 +74,20 @@ function loaderComments () {
     loaderComment.classList.add('hidden');
   }
 }
+const picturesOpenContainer = (data) => {
+  picturesContainer.addEventListener('click', (evt) => {
+    if (evt.target.closest('.picture')) {
+      const renderPictures = data;
+      const idPicture = parseInt(evt.target.closest('.picture').getAttribute('data-id'), 10);
+      const resultId = renderPictures.find((post) => post.id === idPicture);
 
-
-picturesContainer.addEventListener('click', (evt) => {
-  if (evt.target.closest('.picture')) {
-
-    const idPicture = parseInt(evt.target.closest('.picture').getAttribute('data-id'), 10);
-    const resultId = renderPictures.find((post) => post.id === idPicture);
-
-    if (resultId) {
-      evt.preventDefault();
-      dataTransferInModal(resultId);
+      if (resultId) {
+        evt.preventDefault();
+        dataTransferInModal(resultId);
+      }
     }
-  }
-});
-
+  });
+};
 function openUserModal () {
   userModalOpen.classList.remove('hidden');
   document.body.classList.add('modal-open');
@@ -102,4 +102,4 @@ function closeUserModal () {
   userModalClose.removeEventListener('click', closeUserModal);
 }
 
-
+export {picturesOpenContainer};

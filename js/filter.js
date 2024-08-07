@@ -6,8 +6,9 @@ const Filter = {
   DISCUSSED: 'filter-discussed',
 };
 
+const postContainer = document.querySelector('.pictures');
 const filterElement = document.querySelector('.img-filters');
-const currentFilter = Filter.DEFAULT;
+let currentFilter = Filter.DEFAULT;
 let pictures = [];
 
 const sortRandomly = () => Math.random() - 0.5;
@@ -42,6 +43,11 @@ const setOnFilterClick = (callback) => {
 
     filterElement.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
     clickedButton.classList.add('img-filters__button--active');
+    currentFilter = clickedButton.id;
+
+    while (document.querySelector('.picture')) {
+      postContainer.removeChild(document.querySelector('.picture'));
+    }
     callback(getFilteredPictures());
   });
 };
