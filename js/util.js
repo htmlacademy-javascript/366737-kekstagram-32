@@ -59,6 +59,18 @@ const debounce = (callback, timeoutDelay = 500) => {
   };
 };
 
+const throttle = (callback, delayBetweenFrames) => {
+  let lastTime = 0;
+
+  return (...rest) => {
+    const now = new Date();
+    if (now - lastTime >= delayBetweenFrames) {
+      callback.apply(this, rest);
+      lastTime = now;
+    }
+  };
+};
+
 //Обработчик событий по нажатию клавиши Esc
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
@@ -66,4 +78,4 @@ const isEscapeKey = (evt) => evt.key === 'Escape';
 const isEnterKey = (evt) => evt.key === 'Enter';
 
 
-export {getRandomInteger, uniqueRandomInteger, createIdGenerator, getRandomElement, isEscapeKey, isEnterKey, showAlert, debounce};
+export {getRandomInteger, uniqueRandomInteger, createIdGenerator, getRandomElement, isEscapeKey, isEnterKey, showAlert, debounce, throttle};
