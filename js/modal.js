@@ -102,4 +102,4 @@ function closeUserModal () {
   userModalClose.removeEventListener('click', closeUserModal);
 }
 
-export {picturesOpenContainer};
+export {picturesOpenContainer, onDocumentKeydown};
