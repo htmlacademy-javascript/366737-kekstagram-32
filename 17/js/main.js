@@ -1,8 +1,7 @@
 
 
-import {setOnFormSubmit, closeUserModal} from './load-form.js';
+import {setOnFormSubmit, closeUserModal, showSuccessMessage, showErrorMessage} from './load-form.js';
 import {showAlert, debounce} from './util.js';
-import {showSuccessMessage, showErrorMessage} from './message.js';
 import {getData, sendData} from './api.js';
 import {renderPictures} from './thumbnail.js';
 import {initFilter, getFilteredPictures} from './filter.js';

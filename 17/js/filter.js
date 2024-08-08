@@ -31,23 +31,31 @@ const getFilteredPictures = () => {
 
 //обработчик фильтра по клику
 const setOnFilterClick = (callback) => {
+  // Добавляем обработчик события клика на элементе filterElement
   filterElement.addEventListener('click', (evt) => {
+    // Проверяем, был ли клик на кнопке фильтра
     if (!evt.target.classList.contains('img-filters__button')) {
-      return;
+      return; // Если клик не на кнопке фильтра, выходим из функции
     }
 
-    const clickedButton = evt.target;
+    const clickedButton = evt.target; // Сохраняем нажатую кнопку
     if (clickedButton.id === currentFilter) {
-      return;
+      return; // Если нажали на текущий фильтр, выходим из функции
     }
 
+    // Убираем активный класс с текущей кнопки
     filterElement.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
-    clickedButton.classList.add('img-filters__button--active');
-    currentFilter = clickedButton.id;
 
+    // Добавляем активный класс на нажатую кнопку
+    clickedButton.classList.add('img-filters__button--active');
+    currentFilter = clickedButton.id; // Обновляем текущий фильтр
+
+    // Удаляем все элементы с классом 'picture' из контейнера постов
     while (document.querySelector('.picture')) {
       postContainer.removeChild(document.querySelector('.picture'));
     }
+
+    // Вызываем функцию обратного вызова с фильтрованными изображениями
     callback(getFilteredPictures());
   });
 };
