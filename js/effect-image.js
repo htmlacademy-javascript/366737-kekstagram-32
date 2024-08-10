@@ -1,4 +1,4 @@
-const effectName = { //Effect
+const effectName = {
   DEFAULT: 'none',
   CHROME: 'chrome',
   SEPIA: 'sepia',

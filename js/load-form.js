@@ -3,8 +3,6 @@ import { pristine } from './validation-form.js';
 import { init, reset } from './effect-image.js';
 import { updateScale } from './scale-control.js';
 
-init();
-
 const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 const SubmitButtonText = {
   IDLE: 'Опубликовать',
@@ -27,6 +25,12 @@ const plusSizeButton = form.querySelector('.scale__control--bigger');
 const scaleInput = document.querySelector('.scale__control--value');
 
 const isErrorMessageShown = () => Boolean(document.querySelector('.error'));
+
+const successMessage = document.querySelector('#success').content.querySelector('.success');
+const errorMessage = document.querySelector('#error').content.querySelector('.error');
+const body = document.querySelector('body');
+
+init();
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -114,10 +118,6 @@ const setOnFormSubmit = (callback) => {
   });
 };
 
-
-const successMessage = document.querySelector('#success').content.querySelector('.success');
-const errorMessage = document.querySelector('#error').content.querySelector('.error');
-const body = document.querySelector('body');
 
 // Скрытие сообщений и удаление обработчиков
 function hideMessage() {

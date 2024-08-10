@@ -6,6 +6,10 @@ const renderPictures = (createPhotoPosts) => {
 
   const thumbnailFragment = document.createDocumentFragment();
 
+  while (document.querySelector('.picture')) {
+    pictureList.removeChild(document.querySelector('.picture'));
+  }
+
   createPhotoPosts.forEach(({url, description, likes, comments, id}) => {
     const thumbnailItem = thumbnailTemplate .cloneNode(true);
 
