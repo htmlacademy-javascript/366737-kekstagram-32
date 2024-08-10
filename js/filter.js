@@ -6,7 +6,6 @@ const Filter = {
   DISCUSSED: 'filter-discussed',
 };
 
-const postContainer = document.querySelector('.pictures');
 const filterElement = document.querySelector('.img-filters');
 let currentFilter = Filter.DEFAULT;
 let pictures = [];
@@ -50,21 +49,16 @@ const setOnFilterClick = (callback) => {
     clickedButton.classList.add('img-filters__button--active');
     currentFilter = clickedButton.id; // Обновляем текущий фильтр
 
-    // Удаляем все элементы с классом 'picture' из контейнера постов
-    while (document.querySelector('.picture')) {
-      postContainer.removeChild(document.querySelector('.picture'));
-    }
-
     // Вызываем функцию обратного вызова с фильтрованными изображениями
     callback(getFilteredPictures());
   });
 };
 
-const initFilter = (loadedPictures, callback) => {
+const init = (loadedPictures, callback) => {
   filterElement.classList.remove('img-filters--inactive');
   pictures = [...loadedPictures];
   setOnFilterClick(callback);
 };
 
-export{initFilter, getFilteredPictures};
+export{init, getFilteredPictures};
 

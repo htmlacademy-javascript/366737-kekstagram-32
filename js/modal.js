@@ -40,7 +40,7 @@ const renderComments = (comments) =>{
   listComment.appendChild(commentFragment);
 };
 
-const dataTransferInModal = (post) => {
+const renderPictureInModal = (post) => {
   userModalOpen.querySelector('.big-picture__image').src = post.url;
   userModalOpen.querySelector('.social__caption').textContent = post.description;
   userModalOpen.querySelector('.likes-count').textContent = post.likes;
@@ -83,7 +83,7 @@ const picturesOpenContainer = (data) => {
 
       if (resultId) {
         evt.preventDefault();
-        dataTransferInModal(resultId);
+        renderPictureInModal(resultId);
       }
     }
   });

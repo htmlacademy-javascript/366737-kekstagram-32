@@ -4,8 +4,8 @@ import {setOnFormSubmit, closeUserModal, showSuccessMessage, showErrorMessage} f
 import {showAlert, debounce} from './util.js';
 import {getData, sendData} from './api.js';
 import {renderPictures} from './thumbnail.js';
-import {initFilter, getFilteredPictures} from './filter.js';
 import {picturesOpenContainer} from './modal.js';
+import {init as initFilter, getFilteredPictures} from './filter.js';
 
 // асинхронное отправление данных
 setOnFormSubmit(async (data) => {
