@@ -1,4 +1,4 @@
-const effectName = {
+const EffectName = {
   DEFAULT: 'none',
   CHROME: 'chrome',
   SEPIA: 'sepia',
@@ -8,55 +8,55 @@ const effectName = {
 };
 
 const effectToFilter = {
-  [effectName.CHROME]: {
+  [EffectName.CHROME]: {
     style: 'grayscale',
     unit: '',
   },
-  [effectName.SEPIA]: {
+  [EffectName.SEPIA]: {
     style: 'sepia',
     unit: '',
   },
-  [effectName.MARVIN]: {
+  [EffectName.MARVIN]: {
     style: 'invert',
     unit: '%',
   },
-  [effectName.PHOBOS]: {
+  [EffectName.PHOBOS]: {
     style: 'blur',
     unit: 'px',
   },
-  [effectName.HEAT]: {
+  [EffectName.HEAT]: {
     style: 'brightness',
     unit: '',
   },
 };
 
 const effectToSliderOptions = {
-  [effectName.DEFAULT]: {
+  [EffectName.DEFAULT]: {
     min: 0,
     max: 100,
     step: 1,
   },
-  [effectName.CHROME]: {
+  [EffectName.CHROME]: {
     min: 0,
     max: 1,
     step: 0.1,
   },
-  [effectName.SEPIA]: {
+  [EffectName.SEPIA]: {
     min: 0,
     max: 1,
     step: 0.1,
   },
-  [effectName.MARVIN]: {
+  [EffectName.MARVIN]: {
     min: 0,
     max: 100,
     step: 1,
   },
-  [effectName.PHOBOS]: {
+  [EffectName.PHOBOS]: {
     min: 0,
     max: 3,
     step: 0.1,
   },
-  [effectName.HEAT]: {
+  [EffectName.HEAT]: {
     min: 1,
     max: 3,
     step: 0.1,
@@ -69,8 +69,8 @@ const effectContainer = document.querySelector('.img-upload__effect-level');
 const effectSlider = document.querySelector('.effect-level__slider');
 const effectsElement = document.querySelector('.effects');
 
-let chosenEffect = effectName.DEFAULT;
-const isDefault = () => chosenEffect === effectName.DEFAULT;
+let chosenEffect = EffectName.DEFAULT;
+const isDefault = () => chosenEffect === EffectName.DEFAULT;
 
 
 // выбранный эффект применяем к изображению
@@ -142,7 +142,7 @@ const setEffect = (effect) => {
 };
 
 const reset = () => {
-  setEffect(effectName.DEFAULT);
+  setEffect(EffectName.DEFAULT);
 };
 
 const onEffectsChange = (evt) => {

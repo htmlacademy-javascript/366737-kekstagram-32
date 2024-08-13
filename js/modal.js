@@ -1,8 +1,6 @@
 import {isEscapeKey} from './util.js';
-//import {renderPictures} from './thumbnail.js';
 
 const COMMENT_SHOWN_COUNT = 5;
-
 
 const picturesContainer = document.querySelector('.pictures');
 const userModalOpen = document.querySelector('.big-picture');
@@ -51,7 +49,7 @@ const renderPictureInModal = (post) => {
   } else {
     userModalOpen.querySelector('.social__comment-shown-count').textContent = COMMENT_SHOWN_COUNT;
     userModalOpen.querySelector('.comments-loader').classList.remove('hidden');
-    userModalOpen.querySelector('.comments-loader').addEventListener('click', loaderComments);
+    userModalOpen.querySelector('.comments-loader').addEventListener('click', loadComments);
   }
 
   userModalOpen.querySelector('.social__comment-total-count').textContent = post.comments.length;
@@ -59,7 +57,7 @@ const renderPictureInModal = (post) => {
   openUserModal();
 };
 
-function loaderComments () {
+function loadComments () {
   const commentHidden = listComment.querySelectorAll('.social__comment.hidden');
   const countComment = Math.min(commentHidden.length, COMMENT_SHOWN_COUNT);
   for (let i = 0; i < countComment; i++){
@@ -74,7 +72,8 @@ function loaderComments () {
     loaderComment.classList.add('hidden');
   }
 }
-const picturesOpenContainer = (data) => {
+
+const addPicturesOnContainer = (data) => {
   picturesContainer.addEventListener('click', (evt) => {
     if (evt.target.closest('.picture')) {
       const renderPictures = data;
@@ -102,4 +101,4 @@ function closeUserModal () {
   userModalClose.removeEventListener('click', closeUserModal);
 }
 
-export {picturesOpenContainer, onDocumentKeydown};
+export {addPicturesOnContainer, onDocumentKeydown};

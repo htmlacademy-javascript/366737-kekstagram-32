@@ -4,7 +4,7 @@ import {setOnFormSubmit, closeUserModal, showSuccessMessage, showErrorMessage} f
 import {showAlert, debounce} from './util.js';
 import {getData, sendData} from './api.js';
 import {renderPictures} from './thumbnail.js';
-import {picturesOpenContainer} from './modal.js';
+import {addPicturesOnContainer} from './modal.js';
 import {init as initFilter, getFilteredPictures} from './filter.js';
 
 // асинхронное отправление данных
@@ -24,7 +24,7 @@ try {
   const debounceRenderPictures = debounce(renderPictures);
   initFilter(data,debounceRenderPictures);
   renderPictures(getFilteredPictures());
-  picturesOpenContainer(data);
+  addPicturesOnContainer(data);
 } catch {
   showAlert ();
 }
